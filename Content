@@ -1,1 +1,912 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quentin Raizonville — Technicien Réseau</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg-dark:     #2d2d2d;
+      --bg-panel:    #383838;
+      --bg-card:     #424242;
+      --border:      #505050;
+      --text-main:   #d4d4e0;
+      --text-muted:  #6b6b80;
+      --accent-orange: #fb923c;
+      --glow-o: 0 0 12px #fb923c55;
+      --accent-yellow: #f5c842;
+      --accent-green:  #4ade80;
+      --accent-blue:   #60a5fa;
+      --accent-violet: #c084fc;
+      --accent-red:    #f87171;
+      --glow-y: 0 0 12px #f5c84255;
+      --glow-g: 0 0 12px #4ade8055;
+      --glow-b: 0 0 12px #60a5fa55;
+      --glow-v: 0 0 12px #c084fc55;
+      --glow-r: 0 0 12px #f8717155;
+    }
 
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      background: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Rajdhani', sans-serif;
+      overflow: hidden;
+    }
+
+    /* ─── LAYOUT ─────────────────────────────────── */
+    .layout {
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* ─── SIDEBAR ────────────────────────────────── */
+    .sidebar {
+      width: 220px;
+      min-width: 220px;
+      background: var(--bg-panel);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      padding: 40px 0 30px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .sidebar::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 1px; height: 100%;
+      background: linear-gradient(to bottom, transparent, var(--accent-blue) 40%, var(--accent-violet) 60%, transparent);
+      opacity: 0.4;
+    }
+
+    .logo {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 0 28px 40px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .logo span {
+      display: block;
+      font-size: 14px;
+      color: var(--accent-blue);
+      letter-spacing: 1px;
+    }
+
+    nav {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 0 16px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.2s;
+      position: relative;
+      border: 1px solid transparent;
+    }
+
+    .nav-item::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.7;
+      flex-shrink: 0;
+      transition: box-shadow 0.2s;
+    }
+
+    .nav-item:hover,
+    .nav-item.active {
+      background: rgba(255,255,255,0.04);
+      border-color: currentColor;
+      transform: translateX(4px);
+    }
+
+    .nav-item:hover::before,
+    .nav-item.active::before {
+      box-shadow: 0 0 8px currentColor;
+    }
+
+    .nav-item.active {
+      background: rgba(255,255,255,0.07);
+    }
+
+    .nav-item[data-tab="welcome"]      { color: var(--accent-orange); }
+    .nav-item[data-tab="apropos"]       { color: var(--accent-yellow); }
+    .nav-item[data-tab="skills"]        { color: var(--accent-green); }
+    .nav-item[data-tab="certifications"]{ color: var(--accent-blue); }
+    .nav-item[data-tab="projets"]       { color: var(--accent-violet); }
+    .nav-item[data-tab="contact"]       { color: var(--accent-red); }
+
+    .sidebar-footer {
+      padding: 20px 28px 0;
+      border-top: 1px solid var(--border);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+
+    /* ─── MAIN ───────────────────────────────────── */
+    .main {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* grid background — projets only */
+    #projets::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(192,132,252,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(192,132,252,0.07) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    #projets > * { position: relative; z-index: 1; }
+
+    /* ─── PANELS ─────────────────────────────────── */
+    .panel {
+      position: absolute;
+      inset: 0;
+      padding: 60px 70px;
+      overflow-y: auto;
+      opacity: 0;
+      transform: translateY(18px);
+      pointer-events: none;
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+
+    .panel.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+
+    /* ─── WELCOME ────────────────────────────────── */
+    #welcome {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 80px;
+    }
+
+    .welcome-tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 12px;
+      color: #ffffff;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.2s forwards;
+    }
+
+    .welcome-title {
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      max-width: 700px;
+      color: #ffffff;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.4s forwards;
+    }
+
+    .welcome-title .name {
+      color: #ffffff;
+      display: block;
+    }
+
+    .welcome-title .role {
+      color: var(--accent-orange);
+      font-size: 0.55em;
+      font-weight: 300;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      display: block;
+      margin-top: 12px;
+      text-shadow: var(--glow-o);
+    }
+
+    .welcome-sub {
+      margin-top: 32px;
+      color: #ffffff;
+      font-size: 15px;
+      letter-spacing: 1px;
+      font-weight: 300;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.6s forwards;
+    }
+
+    .welcome-cta {
+      margin-top: 48px;
+      display: flex;
+      gap: 16px;
+      opacity: 0;
+      animation: fadeUp 0.7s 0.8s forwards;
+    }
+
+    .btn {
+      padding: 12px 28px;
+      border-radius: 4px;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent-yellow);
+      color: #111;
+      box-shadow: var(--glow-y);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 20px #f5c84288; }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--accent-red);
+      border: 1px solid var(--accent-red);
+    }
+    .btn-ghost:hover { background: rgba(248,113,113,0.1); }
+
+    /* ─── SECTION HEADER ─────────────────────────── */
+    .section-header {
+      margin-bottom: 50px;
+    }
+
+    .section-tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      opacity: 0.6;
+    }
+
+    .section-title {
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    .section-line {
+      width: 60px; height: 3px;
+      border-radius: 2px;
+      margin-top: 14px;
+    }
+
+    /* ─── A PROPOS ───────────────────────────────── */
+    #apropos .section-tag  { color: var(--accent-yellow); }
+    #apropos .section-title{ color: var(--accent-yellow); text-shadow: var(--glow-y); }
+    #apropos .section-line { background: var(--accent-yellow); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .about-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 28px;
+    }
+
+    .about-card h3 {
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent-yellow);
+      margin-bottom: 14px;
+    }
+
+    .about-card p {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--text-muted);
+    }
+
+    .about-card.wide { grid-column: 1 / -1; }
+
+    /* ─── SKILLS ─────────────────────────────────── */
+    #skills .section-tag  { color: var(--accent-green); }
+    #skills .section-title{ color: var(--accent-green); text-shadow: var(--glow-g); }
+    #skills .section-line { background: var(--accent-green); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 22px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .skill-card:hover {
+      border-color: var(--accent-green);
+      transform: translateY(-3px);
+    }
+
+    .skill-name {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+
+    .skill-bar {
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .skill-fill {
+      height: 100%;
+      background: var(--accent-green);
+      border-radius: 2px;
+      box-shadow: var(--glow-g);
+      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+      width: 0;
+    }
+
+    .skill-card.animated .skill-fill { width: var(--pct); }
+
+    .skill-pct {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      color: var(--accent-green);
+      margin-top: 6px;
+      text-align: right;
+    }
+
+    /* ─── CERTIFICATIONS ─────────────────────────── */
+    #certifications .section-tag  { color: var(--accent-blue); }
+    #certifications .section-title{ color: var(--accent-blue); text-shadow: var(--glow-b); }
+    #certifications .section-line { background: var(--accent-blue); }
+
+    .cert-list { display: flex; flex-direction: column; gap: 16px; }
+
+    .cert-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent-blue);
+      border-radius: 8px;
+      padding: 22px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: transform 0.2s;
+    }
+
+    .cert-item:hover { transform: translateX(6px); }
+
+    .cert-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .cert-issuer {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .cert-badge {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 11px;
+      color: var(--accent-blue);
+      background: rgba(96,165,250,0.1);
+      border: 1px solid var(--accent-blue);
+      border-radius: 4px;
+      padding: 6px 12px;
+      white-space: nowrap;
+    }
+
+    /* ─── PROJETS ────────────────────────────────── */
+    #projets .section-tag  { color: var(--accent-violet); }
+    #projets .section-title{ color: var(--accent-violet); text-shadow: var(--glow-v); }
+    #projets .section-line { background: var(--accent-violet); }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.25s, border-color 0.25s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-violet);
+    }
+
+    .project-top {
+      height: 8px;
+      background: linear-gradient(90deg, var(--accent-violet), var(--accent-blue));
+    }
+
+    .project-body { padding: 24px; }
+
+    .project-type {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      color: var(--accent-violet);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .project-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+
+    .project-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .project-tags {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-size: 11px;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      border-radius: 3px;
+      background: rgba(192,132,252,0.1);
+      color: var(--accent-violet);
+      border: 1px solid rgba(192,132,252,0.3);
+    }
+
+    /* ─── CONTACT ────────────────────────────────── */
+    #contact .section-tag  { color: var(--accent-red); }
+    #contact .section-title{ color: var(--accent-red); text-shadow: var(--glow-r); }
+    #contact .section-line { background: var(--accent-red); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 700px;
+    }
+
+    .contact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 26px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .contact-card:hover {
+      border-color: var(--accent-red);
+      transform: scale(1.02);
+    }
+
+    .contact-icon {
+      font-size: 24px;
+      width: 48px; height: 48px;
+      border-radius: 8px;
+      background: rgba(248,113,113,0.1);
+      border: 1px solid rgba(248,113,113,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .contact-value {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .contact-value a {
+      color: var(--accent-red);
+      text-decoration: none;
+    }
+    .contact-value a:hover { text-decoration: underline; }
+
+    .contact-info-block {
+      max-width: 700px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .contact-info-row {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent-red);
+      border-radius: 8px;
+      padding: 18px 24px;
+    }
+
+    .contact-info-row .contact-label {
+      font-size: 18px;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .contact-info-row .contact-value {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    /* Comments */
+    .comments-section {
+      max-width: 700px;
+      margin-top: 40px;
+    }
+
+    .comments-section h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--accent-red);
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .comment-form {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 30px;
+    }
+
+    .comment-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+
+    .comment-form .form-field {
+      display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px;
+    }
+
+    .comment-form label {
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);
+    }
+
+    .comment-form input,
+    .comment-form textarea {
+      background: var(--bg-dark);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 16px;
+      color: var(--text-main);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: none;
+    }
+
+    .comment-form input:focus,
+    .comment-form textarea:focus { border-color: var(--accent-red); }
+
+    .comments-list { display: flex; flex-direction: column; gap: 14px; }
+
+    .comments-list h4 {
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .comment-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent-red);
+      border-radius: 8px;
+      padding: 16px 20px;
+      animation: fadeUp 0.3s ease forwards;
+    }
+
+    .comment-item-header {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;
+    }
+
+    .comment-item-from {
+      font-size: 13px; font-weight: 700; color: var(--accent-red);
+    }
+
+    .comment-item-subject {
+      font-size: 12px; color: var(--text-muted); letter-spacing: 1px;
+    }
+
+    .comment-item-date {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 13px;
+      color: var(--accent-red);
+      background: rgba(248,113,113,0.1);
+      border: 1px solid rgba(248,113,113,0.3);
+      border-radius: 4px;
+      padding: 3px 10px;
+      white-space: nowrap;
+    }
+
+    .comment-item-body {
+      font-size: 14px; font-weight: 300; color: var(--text-main); line-height: 1.6;
+    }
+
+    .no-comments {
+      font-size: 14px; color: var(--text-muted); font-style: italic; padding: 16px 0;
+    }
+
+    /* ─── ANIMATIONS ─────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">
+      <span>QR</span>
+      Portfolio<br/>v1.0
+    </div>
+    <nav>
+      <div class="nav-item" data-tab="welcome">Accueil</div>
+      <div class="nav-item" data-tab="apropos">A propos</div>
+      <div class="nav-item" data-tab="skills">Skills</div>
+      <div class="nav-item" data-tab="certifications">Certifications</div>
+      <div class="nav-item" data-tab="projets">Projets</div>
+      <div class="nav-item" data-tab="contact">Contact</div>
+    </nav>
+    <div class="sidebar-footer">© 2025 Q.Raizonville</div>
+  </aside>
+
+  <!-- MAIN AREA -->
+  <main class="main">
+
+    <!-- WELCOME -->
+    <section id="welcome" class="panel active">
+      <div class="welcome-tag">&lt; Bienvenue /&gt;</div>
+      <h1 class="welcome-title">
+        Bonjour, moi c'est
+        <span class="name">Quentin Raizonville</span>
+        <span class="role">Technicien Réseau !</span>
+      </h1>
+      <p class="welcome-sub">Infrastructure · Sécurité · Administration système</p>
+      <div class="welcome-cta">
+        <button class="btn btn-primary" onclick="goTo('apropos')">Découvrir mon profil</button>
+        <button class="btn btn-ghost" onclick="goTo('contact')">Me contacter</button>
+      </div>
+    </section>
+
+    <!-- A PROPOS -->
+    <section id="apropos" class="panel">
+      <div class="section-header">
+        <div class="section-tag">01 — Qui suis-je ?</div>
+        <h2 class="section-title">A Propos</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="about-grid"></div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="panel">
+      <div class="section-header">
+        <div class="section-tag">02 — Compétences</div>
+        <h2 class="section-title">Skills</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="skills-grid"></div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certifications" class="panel">
+      <div class="section-header">
+        <div class="section-tag">03 — Diplômes & Certifs</div>
+        <h2 class="section-title">Certifications</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="cert-list"></div>
+    </section>
+
+    <!-- PROJETS -->
+    <section id="projets" class="panel">
+      <div class="section-header">
+        <div class="section-tag">04 — Réalisations</div>
+        <h2 class="section-title">Projets</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="projects-grid"></div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="panel">
+      <div class="section-header">
+        <div class="section-tag">05 — Me joindre</div>
+        <h2 class="section-title">Contact</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="contact-info-block">
+        <div class="contact-info-row">
+          <div class="contact-label">✉ Mail</div>
+          <div class="contact-value">
+            <a href="mailto:quentinraizonville14@gmail.com">quentinraizonville14@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-info-row">
+          <div class="contact-label">📞 Téléphone</div>
+          <div class="contact-value">06 23 86 20 36</div>
+        </div>
+      </div>
+
+      <div class="comments-section">
+        <h3>// Ou laissez-moi un commentaire</h3>
+        <div class="comment-form">
+          <div class="comment-form form-row">
+            <div class="form-field">
+              <label>Expéditeur</label>
+              <input type="text" id="c-from" placeholder="Votre nom"/>
+            </div>
+            <div class="form-field">
+              <label>Objet</label>
+              <input type="text" id="c-subject" placeholder="Sujet du message"/>
+            </div>
+          </div>
+          <div class="form-field">
+            <label>Contenu</label>
+            <textarea id="c-body" rows="4" placeholder="Votre message..."></textarea>
+          </div>
+          <button class="btn" style="margin-top:16px;background:var(--accent-red);color:#111;box-shadow:var(--glow-r)" onclick="submitComment()">Envoyer →</button>
+        </div>
+
+        <div class="comments-list">
+          <h4>Commentaires</h4>
+          <div id="comments-container"><p class="no-comments">Aucun commentaire pour l'instant.</p></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  function showPanel(id) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    const target = document.getElementById(id);
+    if (target) {
+      target.classList.add('active');
+      if (id === 'skills') animateSkills();
+    }
+    const navTarget = document.querySelector('.nav-item[data-tab="' + id + '"]');
+    if (navTarget) navTarget.classList.add('active');
+  }
+
+  function goTo(id) { showPanel(id); }
+
+  function animateSkills() {
+    document.querySelectorAll('.skill-card').forEach(function(card, i) {
+      setTimeout(function() { card.classList.add('animated'); }, i * 100);
+    });
+  }
+
+  function submitComment() {
+    var from    = document.getElementById('c-from').value.trim();
+    var subject = document.getElementById('c-subject').value.trim();
+    var body    = document.getElementById('c-body').value.trim();
+    if (!from || !body) { alert('Merci de renseigner au moins votre nom et un message.'); return; }
+    var comments = JSON.parse(localStorage.getItem('portfolio-comments') || '[]');
+    var now = new Date();
+    var date = now.toLocaleDateString('fr-FR') + ' ' + now.toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'});
+    comments.unshift({ from: from, subject: subject || '(sans objet)', body: body, date: date });
+    localStorage.setItem('portfolio-comments', JSON.stringify(comments));
+    document.getElementById('c-from').value    = '';
+    document.getElementById('c-subject').value = '';
+    document.getElementById('c-body').value    = '';
+    renderComments();
+  }
+
+  function renderComments() {
+    var container = document.getElementById('comments-container');
+    var comments  = JSON.parse(localStorage.getItem('portfolio-comments') || '[]');
+    if (!comments.length) {
+      container.innerHTML = '<p class="no-comments">Aucun commentaire pour l\'instant.</p>';
+      return;
+    }
+    container.innerHTML = comments.map(function(c) {
+      return '<div class="comment-item">'
+        + '<div class="comment-item-header">'
+        + '<div><span class="comment-item-from">' + c.from + '</span>'
+        + '<span class="comment-item-subject"> — ' + c.subject + '</span></div>'
+        + '<span class="comment-item-date">' + c.date + '</span>'
+        + '</div>'
+        + '<div class="comment-item-body">' + c.body + '</div>'
+        + '</div>';
+    }).join('');
+  }
+
+  document.querySelectorAll('.nav-item').forEach(function(item) {
+    item.addEventListener('click', function() { showPanel(item.dataset.tab); });
+  });
+
+  renderComments();
+</script>
+</body>
+</html>
