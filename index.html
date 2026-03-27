@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #080808;
+      --nav-bg: #0d0d0d;
+      --border: #1f1f1f;
+      --text: #e8e8e8;
+      --text-muted: #5a5a5a;
+      --nav-height: 60px;
+      --font-display: 'Barlow Condensed', sans-serif;
+      --font-mono: 'Barlow Condensed', sans-serif;
+
+      /* Per-tab accent colors */
+      --c-accueil:     #ffffff;
+      --c-profil:      #ff8c00;
+      --c-projets:     #ffd700;
+      --c-e5:          #39d353;
+      --c-veille:      #3b9eff;
+      --c-competences: #a855f7;
+      --c-contact:     #ff3b3b;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-display);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-height);
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      backdrop-filter: blur(12px);
+      overflow: hidden;
+    }
+
+    /* Desktop links */
+    .nav-links {
+      display: flex;
+      align-items: stretch;
+      list-style: none;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .nav-links li {
+      flex: 0 0 auto;
+      display: flex;
+    }
+
+    .nav-links li a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 1.2rem;
+      font-size: clamp(0.8rem, 1.3vw, 1rem);
+      font-family: var(--font-display);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--text-muted);
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+
+    /* Per-tab active/hover colors — desktop */
+    .nav-links li a[data-page="accueil"]:is(.active,:hover)     { color: var(--c-accueil);     border-bottom-color: var(--c-accueil);     background: rgba(255,255,255,0.05); }
+    .nav-links li a[data-page="profil"]:is(.active,:hover)      { color: var(--c-profil);      border-bottom-color: var(--c-profil);      background: rgba(255,140,0,0.07); }
+    .nav-links li a[data-page="projets"]:is(.active,:hover)     { color: var(--c-projets);     border-bottom-color: var(--c-projets);     background: rgba(255,215,0,0.06); }
+    .nav-links li a[data-page="e5"]:is(.active,:hover)          { color: var(--c-e5);          border-bottom-color: var(--c-e5);          background: rgba(57,211,83,0.07); }
+    .nav-links li a[data-page="veille"]:is(.active,:hover)      { color: var(--c-veille);      border-bottom-color: var(--c-veille);      background: rgba(59,158,255,0.07); }
+    .nav-links li a[data-page="competences"]:is(.active,:hover) { color: var(--c-competences); border-bottom-color: var(--c-competences); background: rgba(168,85,247,0.07); }
+    .nav-links li a[data-page="contact"]:is(.active,:hover)     { color: var(--c-contact);     border-bottom-color: var(--c-contact);     background: rgba(255,59,59,0.07); }
+
+    /* Burger button */
+    .burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      z-index: 1100;
+    }
+
+    .burger span {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s, background 0.2s;
+      transform-origin: center;
+    }
+
+    .burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: var(--c-accueil); }
+    .burger.open span:nth-child(2) { opacity: 0; }
+    .burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: var(--c-accueil); }
+
+    /* Mobile drawer */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: var(--nav-height);
+      left: 0;
+      right: 0;
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--border);
+      z-index: 999;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.35s ease;
+    }
+
+    .mobile-menu.open {
+      max-height: 420px;
+    }
+
+    .mobile-menu ul {
+      list-style: none;
+      padding: 0.5rem 0 1rem;
+    }
+
+    .mobile-menu ul li a {
+      display: block;
+      padding: 0.85rem 2rem;
+      font-size: 0.82rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--text-muted);
+      border-left: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+
+    .mobile-menu ul li a:hover,
+    .mobile-menu ul li a.active {
+      border-left-color: currentColor;
+      background: rgba(128,128,128,0.06);
+    }
+
+    /* Per-tab mobile colors */
+    .mobile-menu ul li a[data-page="accueil"]:is(.active,:hover)     { color: var(--c-accueil);     border-left-color: var(--c-accueil); }
+    .mobile-menu ul li a[data-page="profil"]:is(.active,:hover)      { color: var(--c-profil);      border-left-color: var(--c-profil); }
+    .mobile-menu ul li a[data-page="projets"]:is(.active,:hover)     { color: var(--c-projets);     border-left-color: var(--c-projets); }
+    .mobile-menu ul li a[data-page="e5"]:is(.active,:hover)          { color: var(--c-e5);          border-left-color: var(--c-e5); }
+    .mobile-menu ul li a[data-page="veille"]:is(.active,:hover)      { color: var(--c-veille);      border-left-color: var(--c-veille); }
+    .mobile-menu ul li a[data-page="competences"]:is(.active,:hover) { color: var(--c-competences); border-left-color: var(--c-competences); }
+    .mobile-menu ul li a[data-page="contact"]:is(.active,:hover)     { color: var(--c-contact);     border-left-color: var(--c-contact); }
+
+    /* ── PAGES ── */
+    main {
+      padding-top: var(--nav-height);
+      min-height: 100vh;
+    }
+
+    .page {
+      display: none;
+      min-height: calc(100vh - var(--nav-height));
+      background: var(--bg);
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .burger { display: flex; }
+      .mobile-menu { display: block; }
+      nav { padding: 0 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" class="active" data-page="accueil">Accueil</a></li>
+      <li><a href="#" data-page="profil">Mon Profil</a></li>
+      <li><a href="#" data-page="projets">Projets</a></li>
+      <li><a href="#" data-page="e5">E5</a></li>
+      <li><a href="#" data-page="veille">Veille Technologique</a></li>
+      <li><a href="#" data-page="competences">Compétences</a></li>
+      <li><a href="#" data-page="contact">Contact</a></li>
+    </ul>
+
+    <button class="burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#" class="active" data-page="accueil">Accueil</a></li>
+      <li><a href="#" data-page="profil">Mon Profil</a></li>
+      <li><a href="#" data-page="projets">Projets</a></li>
+      <li><a href="#" data-page="e5">E5</a></li>
+      <li><a href="#" data-page="veille">Veille Technologique</a></li>
+      <li><a href="#" data-page="competences">Compétences</a></li>
+      <li><a href="#" data-page="contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <div id="accueil"       class="page active"></div>
+    <div id="profil"        class="page"></div>
+    <div id="projets"       class="page"></div>
+    <div id="e5"            class="page"></div>
+    <div id="veille"        class="page"></div>
+    <div id="competences"   class="page"></div>
+    <div id="contact"       class="page"></div>
+  </main>
+
+  <script>
+    const burger      = document.getElementById('burger');
+    const mobileMenu  = document.getElementById('mobileMenu');
+    const allLinks    = document.querySelectorAll('[data-page]');
+    const allPages    = document.querySelectorAll('.page');
+
+    // Toggle burger menu
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+
+    // Navigation
+    allLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = link.dataset.page;
+
+        // Update active link (all nav instances)
+        allLinks.forEach(l => l.classList.remove('active'));
+        document.querySelectorAll(`[data-page="${target}"]`).forEach(l => l.classList.add('active'));
+
+        // Show target page
+        allPages.forEach(p => p.classList.remove('active'));
+        document.getElementById(target).classList.add('active');
+
+        // Close mobile menu
+        burger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>
