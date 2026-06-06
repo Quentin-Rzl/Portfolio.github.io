@@ -212,13 +212,32 @@ main {
 #contact .page-title {
   color:var(--c6)}
 .comp-grid {
-  padding:2.5rem 5vw 4rem;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(clamp(200px,23vw,360px),1fr));
-  gap:clamp(0.8rem,1.5vw,1.5rem);
-  max-width:min(92vw,1200px);
-  margin:0 auto;
-  align-items:start}
+  padding: 2.5rem clamp(1rem, 5vw, 6rem) 4rem;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: clamp(0.8rem, 1.5vw, 1.5rem);
+  max-width: 100%;
+  margin: 0 auto;
+  align-items: start;
+}
+
+@media (min-width: 480px) {
+  .comp-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .comp-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .comp-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
 .tool-card {
   background:#1a1a1a;
   border:1.5px solid var(--c5);
@@ -279,11 +298,11 @@ main {
   font-size:1.05rem;
   line-height:1.65}
 .profil-wrap {
-  padding:2.5rem 5vw 4rem;
+  padding:2.5rem clamp(1rem, 5vw, 6rem) 4rem;
   display:flex;
   flex-direction:column;
   gap:3rem;
-  max-width:860px;
+  max-width:min(100%, 960px);
   margin:0 auto}
 .profil-section-title {
   font-size:clamp(1.3rem,2.5vw,1.8rem);
@@ -338,11 +357,11 @@ main {
   filter:brightness(1.15);
   transform:translateY(-2px)}
 .e5-wrap {
-  padding:2.5rem 5vw 4rem;
+  padding:2.5rem clamp(1rem, 5vw, 6rem) 4rem;
   display:flex;
   flex-direction:column;
   gap:2rem;
-  max-width:min(92vw,900px);
+  max-width:min(100%, 960px);
   margin:0 auto}
 .e5-tableau {
   background:#1a1a1a;
@@ -441,11 +460,11 @@ main {
 }
 /* interest-grid géré par auto-fit */
 .contact-wrap {
-  padding:2.5rem 5vw 4rem;
+  padding:2.5rem clamp(1rem, 5vw, 6rem) 4rem;
   display:flex;
   flex-direction:column;
   gap:2rem;
-  max-width:min(92vw,720px);
+  max-width:min(100%, 860px);
   margin:0 auto}
 .contact-section {
   background:#1a1a1a;
@@ -541,8 +560,8 @@ main {
   padding:1.35rem 5vw;
   position:relative}
 .accueil-sub {
-  margin-top:.6rem;
-  font-size:clamp(1.29rem,2.97vw,2.38rem);
+  margin-top:.72rem;
+  font-size:clamp(1.55rem,3.56vw,2.86rem);
   font-weight:400;
   letter-spacing:.12em;
   text-transform:uppercase;
@@ -550,7 +569,7 @@ main {
   text-shadow:1px 1px 0 #fff,-1px -1px 0 #fff,1px -1px 0 #fff,-1px 1px 0 #fff,0 0 14px rgba(255,255,255,.95)}
 .accueil-line1,
 .accueil-line2 {
-  font-size:clamp(1.98rem,4.95vw,4.46rem);
+  font-size:clamp(2.38rem,5.94vw,5.35rem);
   font-weight:700;
   letter-spacing:.04em;
   text-transform:uppercase;
@@ -560,19 +579,19 @@ main {
 .accueil-btns {
   display:flex;
   flex-wrap:wrap;
-  gap:.75rem;
-  margin-top:1.19rem;
+  gap:.9rem;
+  margin-top:1.43rem;
   justify-content:center}
 .nav-btn {
   font-family:var(--f);
-  font-size:clamp(0.88rem,1.54vw,1.16rem);
+  font-size:clamp(1.06rem,1.85vw,1.39rem);
   font-weight:700;
   letter-spacing:.08em;
   text-transform:uppercase;
   color:#000;
   border:none;
   border-radius:4px;
-  padding:.55rem 1.39rem;
+  padding:.66rem 1.67rem;
   cursor:pointer;
   transition:filter .2s,transform .15s;
   white-space:nowrap}
@@ -596,8 +615,7 @@ main {
   padding:2rem 1.5rem}
 .accueil-btns {
   gap:.5rem}
-.comp-grid {
-  grid-template-columns:repeat(auto-fit,minmax(clamp(200px,80vw,420px),1fr))}
+
 }
 /* === Pulsing border glow === */
 @keyframes pulse-glow {
@@ -791,19 +809,26 @@ main {
 
 /* === Onglet Veille Technologique === */
 .veille-grid {
-  padding: 2.5rem 5vw 4rem;
+  padding: 2.5rem clamp(1rem, 5vw, 6rem) 4rem;
   display: flex;
   flex-wrap: wrap;
   gap: clamp(1rem, 2vw, 1.8rem);
   justify-content: center;
   align-items: stretch;
-  max-width: min(92vw, 1400px);
+  max-width: 100%;
   margin: 0 auto;
 }
 
 .veille-card {
-  width: clamp(280px, 30%, 400px);
-  flex: 0 0 clamp(280px, 30%, 400px);
+  flex: 1 1 clamp(280px, 28vw, 420px);
+  max-width: clamp(280px, 30vw, 440px);
+}
+
+@media (max-width: 600px) {
+  .veille-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
 }
 
 .veille-card-title {
@@ -962,7 +987,7 @@ body.light-mode .linkedin-link {
 
 body.light-mode .contact-section p,
 body.light-mode .contact-section span,
-body.light-mode .contact-section p[style*="color:#ffffff"] {
+body.light-mode .contact-email {
   color: #000;
 }
 
@@ -999,14 +1024,42 @@ body.light-mode .contact-section p[style*="color:#ffffff"] {
 
 /* Projets : conteneur adaptatif */
 #projets .page-content {
-  padding: 2.5rem 5vw 4rem;
-  max-width: min(92vw, 1400px);
+  padding: 2.5rem clamp(1rem, 5vw, 6rem) 4rem;
+  max-width: 100%;
   margin: 0 auto;
 }
 
-.projets-grid > .projet-card {
-  flex: 1 1 clamp(280px, 30vw, 460px);
-  max-width: clamp(280px, 35vw, 480px);
+.projets-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(1rem, 2vw, 2rem);
+  width: 100%;
+  margin-top: 2.5rem;
+}
+
+/* 1 colonne sur mobile */
+@media (max-width: 600px) {
+  .projets-grid > .projet-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+
+/* 2 colonnes sur tablette */
+@media (min-width: 601px) and (max-width: 1023px) {
+  .projets-grid > .projet-card {
+    flex: 1 1 calc(50% - 1rem);
+    max-width: calc(50% - 1rem);
+  }
+}
+
+/* 3 colonnes sur grand écran */
+@media (min-width: 1024px) {
+  .projets-grid > .projet-card {
+    flex: 1 1 calc(33.333% - 1.5rem);
+    max-width: calc(33.333% - 1.5rem);
+  }
 }
 
 /* Projets : fond gris clair */
@@ -1016,13 +1069,16 @@ body.light-mode .projet-card {
 
 /* Projets : texte blanc/gris → noir */
 body.light-mode .projet-card p,
-body.light-mode .projet-card span:not([style*="color:#ffd700"]) {
+body.light-mode .projet-card span,
+body.light-mode .projet-card-desc,
+body.light-mode .projet-card-wip,
+body.light-mode .projet-card-avec {
   color: #000;
   opacity: 1;
 }
 
-/* Projets : titres jaunes → noirs en mode clair avec fine ombre */
-body.light-mode .projet-card span[style*="color:#ffd700"] {
+/* Projets : titres en classes — jaune → noir en mode clair */
+body.light-mode .projet-card-titre {
   color: #000;
   text-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
@@ -1123,10 +1179,10 @@ body.light-mode .theme-toggle .switch-thumb {
 
 /* --- Accueil : avatar --- */
 .accueil-avatar {
-  width: 257px;
-  height: 257px;
+  width: 308px;
+  height: 308px;
   object-fit: contain;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
 }
 
 /* --- Accueil : boutons colorés --- */
@@ -1142,15 +1198,6 @@ body.light-mode .theme-toggle .switch-thumb {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.projets-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: clamp(1rem, 2vw, 2rem);
-  width: 100%;
-  margin-top: 2.5rem;
 }
 
 /* --- Projets : contenu des cartes --- */
