@@ -22,31 +22,29 @@
     <!-- ==================== NAVIGATION ==================== -->
     <nav>
       <ul class="nav-links">
-        <li><a href="#" class="active" data-page="accueil">Accueil</a></li>
-        <li><a href="#" data-page="profil">Mon Profil</a></li>
-        <li><a href="#" data-page="projets">Projets</a></li>
+        <li><a href="#" class="active" data-page="accueil"    data-i18n="nav.accueil">Accueil</a></li>
+        <li><a href="#" data-page="profil"                    data-i18n="nav.profil">Mon Profil</a></li>
+        <li><a href="#" data-page="projets"                   data-i18n="nav.projets">Projets</a></li>
         <li><a href="#" data-page="e5">E5</a></li>
-        <li><a href="#" data-page="veille">Veille Technologique</a></li>
-        <li><a href="#" data-page="competences">Compétences</a></li>
-        <li><a href="#" data-page="contact">Contact</a></li>
+        <li><a href="#" data-page="veille"                    data-i18n="nav.veille">Veille Technologique</a></li>
+        <li><a href="#" data-page="competences"               data-i18n="nav.competences">Compétences</a></li>
+        <li><a href="#" data-page="contact"                   data-i18n="nav.contact">Contact</a></li>
       </ul>
       <button class="burger" id="burger" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
       </button>
     </nav>
 
     <!-- Menu mobile -->
     <div class="mobile-menu" id="mobileMenu">
       <ul>
-        <li><a href="#" class="active" data-page="accueil">Accueil</a></li>
-        <li><a href="#" data-page="profil">Mon Profil</a></li>
-        <li><a href="#" data-page="projets">Projets</a></li>
+        <li><a href="#" class="active" data-page="accueil"   data-i18n="nav.accueil">Accueil</a></li>
+        <li><a href="#" data-page="profil"                   data-i18n="nav.profil">Mon Profil</a></li>
+        <li><a href="#" data-page="projets"                  data-i18n="nav.projets">Projets</a></li>
         <li><a href="#" data-page="e5">E5</a></li>
-        <li><a href="#" data-page="veille">Veille Technologique</a></li>
-        <li><a href="#" data-page="competences">Compétences</a></li>
-        <li><a href="#" data-page="contact">Contact</a></li>
+        <li><a href="#" data-page="veille"                   data-i18n="nav.veille">Veille Technologique</a></li>
+        <li><a href="#" data-page="competences"              data-i18n="nav.competences">Compétences</a></li>
+        <li><a href="#" data-page="contact"                  data-i18n="nav.contact">Contact</a></li>
       </ul>
     </div>
 
@@ -56,12 +54,30 @@
       <!-- ACCUEIL -->
       <div id="accueil" class="page active page-enter">
         <div class="theme-switcher">
-          <span id="themeLabel" class="theme-label">Mode sombre</span>
-          <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
-            <span class="switch-track"><span class="switch-thumb"></span></span>
-            <span class="switch-icon" id="switchIcon">🌙</span>
-          </button>
+          <div class="theme-row">
+            <span id="themeLabel" class="theme-label" data-i18n="accueil.modeSombre">Mode sombre</span>
+            <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème">
+              <span class="switch-track"><span class="switch-thumb"></span></span>
+              <span class="switch-icon" id="switchIcon">🌙</span>
+            </button>
+          </div>
+
+          <!-- Sélecteur de langue -->
+          <div class="lang-switcher" id="langSwitcher">
+            <button class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">
+              <span class="lang-flag" id="langFlag">🇫🇷</span>
+              <span class="lang-name" id="langName">Français</span>
+              <span class="lang-chevron">&#9660;</span>
+            </button>
+            <ul class="lang-dropdown" id="langDropdown" role="listbox">
+              <li class="lang-option" data-lang="en" role="option">
+                <span class="lang-flag">🇬🇧</span>
+                <span class="lang-name">English</span>
+              </li>
+            </ul>
+          </div>
         </div>
+
         <div class="accueil-hero">
           <img
             src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Accueil/goblin%20slayer%20chibi.png?raw=true"
@@ -70,14 +86,14 @@
           />
           <p class="accueil-line1"><em>Portfolio SIO</em></p>
           <p class="accueil-line2">Quentin Raizonville</p>
-          <p class="accueil-sub">Technicien Réseau</p>
+          <p class="accueil-sub" data-i18n="accueil.titre">Technicien Réseau</p>
           <div class="accueil-btns">
-            <button class="nav-btn accueil-btn-1" data-page="profil">Mon Profil</button>
-            <button class="nav-btn accueil-btn-2" data-page="projets">Projets</button>
+            <button class="nav-btn accueil-btn-1" data-page="profil"      data-i18n="nav.profil">Mon Profil</button>
+            <button class="nav-btn accueil-btn-2" data-page="projets"     data-i18n="nav.projets">Projets</button>
             <button class="nav-btn accueil-btn-3" data-page="e5">E5</button>
-            <button class="nav-btn accueil-btn-4" data-page="veille">Veille Technologique</button>
-            <button class="nav-btn accueil-btn-5" data-page="competences">Compétences</button>
-            <button class="nav-btn accueil-btn-6" data-page="contact">Contact</button>
+            <button class="nav-btn accueil-btn-4" data-page="veille"      data-i18n="nav.veille">Veille Technologique</button>
+            <button class="nav-btn accueil-btn-5" data-page="competences" data-i18n="nav.competences">Compétences</button>
+            <button class="nav-btn accueil-btn-6" data-page="contact"     data-i18n="nav.contact">Contact</button>
           </div>
         </div>
       </div>
@@ -85,38 +101,38 @@
       <!-- MON PROFIL -->
       <div id="profil" class="page">
         <div class="page-content">
-          <h1 class="page-title">Mon Profil</h1>
+          <h1 class="page-title" data-i18n="nav.profil">Mon Profil</h1>
           <div class="profil-wrap">
 
             <div>
-              <h2 class="profil-section-title pst-1">À propos</h2>
+              <h2 class="profil-section-title pst-1" data-i18n="profil.apropos">À propos</h2>
               <div class="profil-apropos">
-                <p>Enchanté, je me présente, Quentin Raizonville : Jeune technicien réseau curieux et déterminé, je cherche aujourd'hui à étendre mon arsenal de connaissances, que ce soit en cybersécurité, langages informatiques ou encore en systèmes d'exploitations. Actuellement apprenti en BTS Services Informatiques aux Organisations option SISR chez Nexa Digital School à Paris, je travail avec patience et rigueur afin de répondre à vos attentes.</p>
+                <p data-i18n="profil.bio">Enchanté, je me présente, Quentin Raizonville : Jeune technicien réseau curieux et déterminé, je cherche aujourd'hui à étendre mon arsenal de connaissances, que ce soit en cybersécurité, langages informatiques ou encore en systèmes d'exploitations. Actuellement apprenti en BTS Services Informatiques aux Organisations option SISR chez Nexa Digital School à Paris, je travail avec patience et rigueur afin de répondre à vos attentes.</p>
               </div>
             </div>
 
             <div>
-              <h2 class="profil-section-title pst-2">CV</h2>
+              <h2 class="profil-section-title pst-2" data-i18n="profil.cv">CV</h2>
               <div class="profil-cv">
-                <a class="cv-download" href="https://github.com/Quentin-Rzl/Portfolio.github.io/raw/71dad8ae576b7893decb8af7dae2997d56310dc4/assets/files/Profil/CV_2026_Quentin_Raizonville.pdf" target="_blank" rel="noopener">⬇ Télécharger le CV</a>
+                <a class="cv-download" href="https://github.com/Quentin-Rzl/Portfolio.github.io/raw/71dad8ae576b7893decb8af7dae2997d56310dc4/assets/files/Profil/CV_2026_Quentin_Raizonville.pdf" target="_blank" rel="noopener" data-i18n="profil.cvDownload">⬇ Télécharger le CV</a>
                 <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Profil/CV.png?raw=true" alt="CV Quentin Raizonville"/>
               </div>
             </div>
 
             <div>
-              <h2 class="profil-section-title pst-3">Centres d'intérêts</h2>
+              <h2 class="profil-section-title pst-3" data-i18n="profil.interets">Centres d'intérêts</h2>
               <div class="interest-grid">
 
                 <div class="interest-card" id="icard-prog">
                   <div class="interest-card-header" onclick="document.getElementById('icard-prog').classList.toggle('open')">
                     <span class="interest-card-icon">💻</span>
                     <div class="interest-card-title-block">
-                      <span class="interest-card-title">Code</span>
+                      <span class="interest-card-title" data-i18n="profil.icard.code.titre">Code</span>
                     </div>
                     <span class="interest-card-chevron">&#9660;</span>
                   </div>
                   <div class="interest-card-body">
-                    <p>Programmer représente pour moi une série de challenges que j'aime surmonter.</p>
+                    <p data-i18n="profil.icard.code.desc">Programmer représente pour moi une série de challenges que j'aime surmonter.</p>
                   </div>
                 </div>
 
@@ -124,12 +140,12 @@
                   <div class="interest-card-header" onclick="document.getElementById('icard-echecs').classList.toggle('open')">
                     <span class="interest-card-icon">♟️</span>
                     <div class="interest-card-title-block">
-                      <span class="interest-card-title">Échecs</span>
+                      <span class="interest-card-title" data-i18n="profil.icard.echecs.titre">Échecs</span>
                     </div>
                     <span class="interest-card-chevron">&#9660;</span>
                   </div>
                   <div class="interest-card-body">
-                    <p>Jouer aux échecs me permet de développer mon sens de l'analyse, et surtout de réfléchir avant d'agir.</p>
+                    <p data-i18n="profil.icard.echecs.desc">Jouer aux échecs me permet de développer mon sens de l'analyse, et surtout de réfléchir avant d'agir.</p>
                   </div>
                 </div>
 
@@ -137,12 +153,12 @@
                   <div class="interest-card-header" onclick="document.getElementById('icard-jv').classList.toggle('open')">
                     <span class="interest-card-icon">🎮</span>
                     <div class="interest-card-title-block">
-                      <span class="interest-card-title">Jeux vidéo</span>
+                      <span class="interest-card-title" data-i18n="profil.icard.jv.titre">Jeux vidéo</span>
                     </div>
                     <span class="interest-card-chevron">&#9660;</span>
                   </div>
                   <div class="interest-card-body">
-                    <p>En tant que coach amateur en jeux d'équipes et de stratégie, j'ai appris à faire valoir mon opinion et celles des autres, combattant ainsi ma timidité.</p>
+                    <p data-i18n="profil.icard.jv.desc">En tant que coach amateur en jeux d'équipes et de stratégie, j'ai appris à faire valoir mon opinion et celles des autres, combattant ainsi ma timidité.</p>
                   </div>
                 </div>
 
@@ -155,41 +171,29 @@
       <!-- PROJETS -->
       <div id="projets" class="page">
         <div class="page-content projets-content">
-          <h1 class="page-title">Projets</h1>
+          <h1 class="page-title" data-i18n="nav.projets">Projets</h1>
           <div class="projets-grid">
 
             <!-- Carte : PingCastle -->
             <div id="pingcastle-card" class="projet-card">
               <div class="projet-card-header">
-                <span class="projet-card-titre">Sécuriser un domaine avec PingCastle</span>
+                <span class="projet-card-titre" data-i18n="projets.p1.titre">Sécuriser un domaine avec PingCastle</span>
               </div>
               <img
                 src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Projets/jauge%20PingCastle.png?raw=true"
                 class="projet-card-img"
                 alt="Score PingCastle"
               />
-              <a
-                class="projet-card-link"
+              <a class="projet-card-link"
                 href="https://github.com/Quentin-Rzl/Portfolio.github.io/raw/25d76afa435c6d3b61ad3c38131c486168edec7a/assets/files/Projets/Documentation%20projet%20S%C3%A9curit%C3%A9%20PingCastle.pdf"
-                target="_blank"
-                rel="noopener"
-              >Consulter</a>
-              <p class="projet-card-desc">Outil d'audit de sécurité, PingCastle est un logiciel d'analyse de données dans un domaine qui va nous permettre de renforcer la sécurité d'une infrastructure sous Windows.</p>
+                target="_blank" rel="noopener" data-i18n="projets.consulter">Consulter</a>
+              <p class="projet-card-desc" data-i18n="projets.p1.desc">Outil d'audit de sécurité, PingCastle est un logiciel d'analyse de données dans un domaine qui va nous permettre de renforcer la sécurité d'une infrastructure sous Windows.</p>
               <div class="projet-card-footer">
-                <span class="projet-card-avec">Avec :</span>
+                <span class="projet-card-avec" data-i18n="projets.avec">Avec :</span>
                 <div class="projet-card-skills">
-                  <div class="skill-item">
-                    <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/pfsense.png?raw=true" class="skill-icon" alt="PfSense"/>
-                    <span class="skill-label">PfSense</span>
-                  </div>
-                  <div class="skill-item">
-                    <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/vmware%20workstation.png?raw=true" class="skill-icon" alt="VMware"/>
-                    <span class="skill-label">VMware Workstation</span>
-                  </div>
-                  <div class="skill-item">
-                    <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/windows.png?raw=true" class="skill-icon" alt="Windows"/>
-                    <span class="skill-label">Windows</span>
-                  </div>
+                  <div class="skill-item"><img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/pfsense.png?raw=true" class="skill-icon" alt="PfSense"/><span class="skill-label">PfSense</span></div>
+                  <div class="skill-item"><img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/vmware%20workstation.png?raw=true" class="skill-icon" alt="VMware"/><span class="skill-label">VMware Workstation</span></div>
+                  <div class="skill-item"><img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/windows.png?raw=true" class="skill-icon" alt="Windows"/><span class="skill-label">Windows</span></div>
                 </div>
               </div>
             </div>
@@ -197,38 +201,22 @@
             <!-- Carte : Serveur Samba -->
             <div id="pingcastle-card-2" class="projet-card">
               <div class="projet-card-header">
-                <span class="projet-card-titre">Mise en place d'un serveur Samba</span>
+                <span class="projet-card-titre" data-i18n="projets.p2.titre">Mise en place d'un serveur Samba</span>
               </div>
               <img
                 src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Projets/infra%20info.png?raw=true"
-                class="projet-card-img"
-                alt="Infrastructure simple"
+                class="projet-card-img" alt="Infrastructure simple"
               />
-              <p class="projet-card-wip">En cours de développement</p>
-              <p class="projet-card-desc">Création et gestion d'une infrastructure contenant : Serveur AD DS et DHCP ; Serveur de partage Samba ; Page Web ; Serveur de sauvegarde de données ; Espace Client ; routeur et pare-feu PfSense.</p>
+              <p class="projet-card-wip" data-i18n="projets.wip">En cours de développement</p>
+              <p class="projet-card-desc" data-i18n="projets.p2.desc">Création et gestion d'une infrastructure contenant : Serveur AD DS et DHCP ; Serveur de partage Samba ; Page Web ; Serveur de sauvegarde de données ; Espace Client ; routeur et pare-feu PfSense.</p>
               <div class="projet-card-footer">
-                <span class="projet-card-avec">Avec :</span>
+                <span class="projet-card-avec" data-i18n="projets.avec">Avec :</span>
                 <div class="projet-card-skills">
-                  <div class="skill-item">
-                    <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/Html.png?raw=true" class="skill-icon" alt="HTML"/>
-                    <span class="skill-label">HTML</span>
-                  </div>
-                  <div class="skill-item">
-                    <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/linux.png?raw=true" class="skill-icon" alt="Linux"/>
-                    <span class="skill-label">Linux</span>
-                  </div>
-                  <div class="skill-item">
-                    <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/pfsense.png?raw=true" class="skill-icon" alt="PfSense"/>
-                    <span class="skill-label">PfSense</span>
-                  </div>
-                  <div class="skill-item">
-                    <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/vmware%20workstation.png?raw=true" class="skill-icon" alt="VMware"/>
-                    <span class="skill-label">VMware Workstation</span>
-                  </div>
-                  <div class="skill-item">
-                    <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/windows.png?raw=true" class="skill-icon" alt="Windows"/>
-                    <span class="skill-label">Windows</span>
-                  </div>
+                  <div class="skill-item"><img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/Html.png?raw=true" class="skill-icon" alt="HTML"/><span class="skill-label">HTML</span></div>
+                  <div class="skill-item"><img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/linux.png?raw=true" class="skill-icon" alt="Linux"/><span class="skill-label">Linux</span></div>
+                  <div class="skill-item"><img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/pfsense.png?raw=true" class="skill-icon" alt="PfSense"/><span class="skill-label">PfSense</span></div>
+                  <div class="skill-item"><img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/vmware%20workstation.png?raw=true" class="skill-icon" alt="VMware"/><span class="skill-label">VMware Workstation</span></div>
+                  <div class="skill-item"><img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/windows.png?raw=true" class="skill-icon" alt="Windows"/><span class="skill-label">Windows</span></div>
                 </div>
               </div>
             </div>
@@ -236,26 +224,19 @@
             <!-- Carte : Compotesteur Wakfu -->
             <div id="compotesteur-card" class="projet-card">
               <div class="projet-card-header">
-                <span class="projet-card-titre">Compotesteur équipe de 3/6 joueurs pour le jeu Wakfu</span>
+                <span class="projet-card-titre" data-i18n="projets.p3.titre">Compotesteur équipe de 3/6 joueurs pour le jeu Wakfu</span>
               </div>
               <img
                 src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Projets/compotesteur%20minia.jpg?raw=true"
-                class="projet-card-img"
-                alt="Compotesteur Wakfu"
+                class="projet-card-img" alt="Compotesteur Wakfu"
               />
-              <p class="projet-card-wip">En cours de développement</p>
-              <p class="projet-card-desc">Site accompagné d'un programme qui test des compositions de personnage pour des équipes de 3 ou 6 joueurs pour le jeu Wakfu</p>
+              <p class="projet-card-wip" data-i18n="projets.wip">En cours de développement</p>
+              <p class="projet-card-desc" data-i18n="projets.p3.desc">Site accompagné d'un programme qui test des compositions de personnage pour des équipes de 3 ou 6 joueurs pour le jeu Wakfu</p>
               <div class="projet-card-footer">
-                <span class="projet-card-avec">Avec :</span>
+                <span class="projet-card-avec" data-i18n="projets.avec">Avec :</span>
                 <div class="projet-card-skills">
-                  <div class="skill-item">
-                    <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/Html.png?raw=true" class="skill-icon" alt="HTML"/>
-                    <span class="skill-label">HTML</span>
-                  </div>
-                  <div class="skill-item">
-                    <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/python.png?raw=true" class="skill-icon" alt="Python"/>
-                    <span class="skill-label">Python</span>
-                  </div>
+                  <div class="skill-item"><img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/Html.png?raw=true" class="skill-icon" alt="HTML"/><span class="skill-label">HTML</span></div>
+                  <div class="skill-item"><img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/python.png?raw=true" class="skill-icon" alt="Python"/><span class="skill-label">Python</span></div>
                 </div>
               </div>
             </div>
@@ -270,7 +251,9 @@
           <h1 class="page-title">E5</h1>
           <div class="e5-wrap">
             <div class="e5-tableau">
-              <a class="e5-download" href="https://github.com/Quentin-Rzl/Portfolio.github.io/raw/ba7f94712fd05b6b7f17e8ab2e2a2c57bd9e51e6/EPREUVE%20E5%20TABLEAU%20DE%20SYNTHESE%20-%20Quentin%20RAIZONVILLE%20-%20BTS%20SIO%202026.pdf" target="_blank" rel="noopener">⬇ Télécharger le tableau de synthèse</a>
+              <a class="e5-download"
+                href="https://github.com/Quentin-Rzl/Portfolio.github.io/raw/ba7f94712fd05b6b7f17e8ab2e2a2c57bd9e51e6/EPREUVE%20E5%20TABLEAU%20DE%20SYNTHESE%20-%20Quentin%20RAIZONVILLE%20-%20BTS%20SIO%202026.pdf"
+                target="_blank" rel="noopener" data-i18n="e5.download">⬇ Télécharger le tableau de synthèse</a>
               <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/E5/Tableau%20e5.png?raw=true" alt="Tableau de synthèse E5"/>
             </div>
           </div>
@@ -280,28 +263,28 @@
       <!-- VEILLE TECHNOLOGIQUE -->
       <div id="veille" class="page">
         <div class="page-content">
-          <h1 class="page-title">Veille Technologique</h1>
+          <h1 class="page-title" data-i18n="nav.veille">Veille Technologique</h1>
           <div class="veille-grid">
 
             <article class="veille-card">
-              <h2 class="veille-card-title">L'état français banni Microsoft et choisit Libre</h2>
-              <a class="veille-card-link" href="https://www.lesnumeriques.com/societe-numerique/le-logiciel-libre-chez-nous-c-est-strategique-comment-le-fisc-francais-a-banni-microsoft-pour-proteger-vos-impots-n252598.html" target="_blank" rel="noopener">Lire l'article ↗</a>
-              <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Veille%20Technologique/Libre%20plutot%20que%20microsoft.png?raw=true" class="veille-card-img" alt="Salle de serveurs — illustration veille technologique"/>
-              <p class="veille-card-desc">Afin de ne plus dépendre des règles imposées par les États-Unis, l'État français décide, pour sécuriser l'impôt français, de se séparer du système Microsoft et le remplace par un autre logiciel&#160;: Libre.</p>
+              <h2 class="veille-card-title" data-i18n="veille.v1.titre">L'état français banni Microsoft et choisit Libre</h2>
+              <a class="veille-card-link" href="https://www.lesnumeriques.com/societe-numerique/le-logiciel-libre-chez-nous-c-est-strategique-comment-le-fisc-francais-a-banni-microsoft-pour-proteger-vos-impots-n252598.html" target="_blank" rel="noopener" data-i18n="veille.lire">Lire l'article ↗</a>
+              <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Veille%20Technologique/Libre%20plutot%20que%20microsoft.png?raw=true" class="veille-card-img" alt="Salle de serveurs"/>
+              <p class="veille-card-desc" data-i18n="veille.v1.desc">Afin de ne plus dépendre des règles imposées par les États-Unis, l'État français décide, pour sécuriser l'impôt français, de se séparer du système Microsoft et le remplace par un autre logiciel&#160;: Libre.</p>
             </article>
 
             <article class="veille-card">
-              <h2 class="veille-card-title">La France, championne de la fuite de données en 2026</h2>
-              <a class="veille-card-link" href="https://frenchbreaches.com/blog/la-france-championne-des-fuites-de-donnees-en-2026-face-a-toute-leurope" target="_blank" rel="noopener">Lire l'article ↗</a>
+              <h2 class="veille-card-title" data-i18n="veille.v2.titre">La France, championne de la fuite de données en 2026</h2>
+              <a class="veille-card-link" href="https://frenchbreaches.com/blog/la-france-championne-des-fuites-de-donnees-en-2026-face-a-toute-leurope" target="_blank" rel="noopener" data-i18n="veille.lire">Lire l'article ↗</a>
               <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Veille%20Technologique/vuln%C3%A9%20france.png?raw=true" class="veille-card-img veille-card-img--small" alt="La France, cible principale des cyberattaques en Europe"/>
-              <p class="veille-card-desc">Depuis janvier 2026, la France subit une vague de piratages qui met en péril plus de 200 millions de données personnelles des citoyens. Les secteurs de la médecine et de la finance sont les plus exposés.</p>
+              <p class="veille-card-desc" data-i18n="veille.v2.desc">Depuis janvier 2026, la France subit une vague de piratages qui met en péril plus de 200 millions de données personnelles des citoyens. Les secteurs de la médecine et de la finance sont les plus exposés.</p>
             </article>
 
             <article class="veille-card">
-              <h2 class="veille-card-title">Le manque de réactivité de l'ANSSI</h2>
-              <a class="veille-card-link" href="https://www.lemondeinformatique.fr/actualites/lire-l-anssi-sur-la-sellette-apres-de-multiples-defaillances-en-cybersecurite-100194.html" target="_blank" rel="noopener">Lire l'article ↗</a>
+              <h2 class="veille-card-title" data-i18n="veille.v3.titre">Le manque de réactivité de l'ANSSI</h2>
+              <a class="veille-card-link" href="https://www.lemondeinformatique.fr/actualites/lire-l-anssi-sur-la-sellette-apres-de-multiples-defaillances-en-cybersecurite-100194.html" target="_blank" rel="noopener" data-i18n="veille.lire">Lire l'article ↗</a>
               <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Veille%20Technologique/anssi%20inactif.png?raw=true" class="veille-card-img" alt="Commission de la Défense — ANSSI"/>
-              <p class="veille-card-desc">Face à la recrudescence des attaques informatiques touchant un nombre toujours plus élevé de services publics et de ministères, l'Agence nationale de la sécurité des systèmes d'information peine à prouver sa capacité d'action.</p>
+              <p class="veille-card-desc" data-i18n="veille.v3.desc">Face à la recrudescence des attaques informatiques touchant un nombre toujours plus élevé de services publics et de ministères, l'Agence nationale de la sécurité des systèmes d'information peine à prouver sa capacité d'action.</p>
             </article>
 
           </div>
@@ -311,7 +294,7 @@
       <!-- COMPÉTENCES -->
       <div id="competences" class="page">
         <div class="page-content">
-          <h1 class="page-title">Compétences</h1>
+          <h1 class="page-title" data-i18n="nav.competences">Compétences</h1>
           <div class="comp-grid">
 
             <div class="tool-card" id="card-c">
@@ -319,13 +302,11 @@
                 <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/C.png?raw=true" alt="C logo"/>
                 <div class="tool-card-title-block">
                   <span class="tool-card-title">C</span>
-                  <span class="tool-card-sub">Programmation</span>
+                  <span class="tool-card-sub" data-i18n="comp.sub.programmation">Programmation</span>
                 </div>
                 <span class="tool-card-chevron">&#9660;</span>
               </div>
-              <div class="tool-card-body">
-                <p>Programmation et réseau sont étroitement liés dans le domaine du numérique. Avoir des connaissances en développement me permet de mieux coordonner mes actions en fonction des besoins.</p>
-              </div>
+              <div class="tool-card-body"><p data-i18n="comp.desc.c">Programmation et réseau sont étroitement liés dans le domaine du numérique. Avoir des connaissances en développement me permet de mieux coordonner mes actions en fonction des besoins.</p></div>
             </div>
 
             <div class="tool-card" id="card-css">
@@ -333,13 +314,11 @@
                 <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/CSS.png?raw=true" alt="CSS logo"/>
                 <div class="tool-card-title-block">
                   <span class="tool-card-title">CSS</span>
-                  <span class="tool-card-sub">Edition de page internet</span>
+                  <span class="tool-card-sub" data-i18n="comp.sub.editionWeb">Edition de page internet</span>
                 </div>
                 <span class="tool-card-chevron">&#9660;</span>
               </div>
-              <div class="tool-card-body">
-                <p>Le langage CSS est une extension de HTML pour accompagner ce dernier dans la création de pages web. Il permet de créer des effets visuels et animations pour donner une réelle personnalité aux fichiers HTML.</p>
-              </div>
+              <div class="tool-card-body"><p data-i18n="comp.desc.css">Le langage CSS est une extension de HTML pour accompagner ce dernier dans la création de pages web. Il permet de créer des effets visuels et animations pour donner une réelle personnalité aux fichiers HTML.</p></div>
             </div>
 
             <div class="tool-card" id="card-cisco">
@@ -347,13 +326,11 @@
                 <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/Cisco.png?raw=true" alt="Cisco logo"/>
                 <div class="tool-card-title-block">
                   <span class="tool-card-title">Cisco Packet Tracer</span>
-                  <span class="tool-card-sub">Simulation de Réseaux</span>
+                  <span class="tool-card-sub" data-i18n="comp.sub.simReseau">Simulation de Réseaux</span>
                 </div>
                 <span class="tool-card-chevron">&#9660;</span>
               </div>
-              <div class="tool-card-body">
-                <p>La simulation de réseaux permet de définir en détail l'architecture numérique à mettre en place et de la tester avant de l'appliquer en physique.</p>
-              </div>
+              <div class="tool-card-body"><p data-i18n="comp.desc.cisco">La simulation de réseaux permet de définir en détail l'architecture numérique à mettre en place et de la tester avant de l'appliquer en physique.</p></div>
             </div>
 
             <div class="tool-card" id="card-html">
@@ -361,13 +338,11 @@
                 <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/Html.png?raw=true" alt="HTML logo"/>
                 <div class="tool-card-title-block">
                   <span class="tool-card-title">HTML</span>
-                  <span class="tool-card-sub">Édition de page internet</span>
+                  <span class="tool-card-sub" data-i18n="comp.sub.editionWeb">Édition de page internet</span>
                 </div>
                 <span class="tool-card-chevron">&#9660;</span>
               </div>
-              <div class="tool-card-body">
-                <p>HTML est un indispensable pour configurer une page internet, notamment pour la création de ce portfolio.</p>
-              </div>
+              <div class="tool-card-body"><p data-i18n="comp.desc.html">HTML est un indispensable pour configurer une page internet, notamment pour la création de ce portfolio.</p></div>
             </div>
 
             <div class="tool-card" id="card-linux">
@@ -375,13 +350,11 @@
                 <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/linux.png?raw=true" alt="Linux logo"/>
                 <div class="tool-card-title-block">
                   <span class="tool-card-title">Linux</span>
-                  <span class="tool-card-sub">Système d'exploitation</span>
+                  <span class="tool-card-sub" data-i18n="comp.sub.os">Système d'exploitation</span>
                 </div>
                 <span class="tool-card-chevron">&#9660;</span>
               </div>
-              <div class="tool-card-body">
-                <p>Linux est un système ouvert qui permet de mettre en place multiples services : Pare-Feux ; Superviseur ; Serveurs ; etc...</p>
-              </div>
+              <div class="tool-card-body"><p data-i18n="comp.desc.linux">Linux est un système ouvert qui permet de mettre en place multiples services : Pare-Feux ; Superviseur ; Serveurs ; etc...</p></div>
             </div>
 
             <div class="tool-card" id="card-office">
@@ -393,9 +366,7 @@
                 </div>
                 <span class="tool-card-chevron">&#9660;</span>
               </div>
-              <div class="tool-card-body">
-                <p>Logiciels de création et d'édition de textes/présentations/tableaux de données.</p>
-              </div>
+              <div class="tool-card-body"><p data-i18n="comp.desc.office">Logiciels de création et d'édition de textes/présentations/tableaux de données.</p></div>
             </div>
 
             <div class="tool-card" id="card-virtualbox">
@@ -403,13 +374,11 @@
                 <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/virtualbox-newlogo.webp?raw=true" alt="Oracle VirtualBox logo"/>
                 <div class="tool-card-title-block">
                   <span class="tool-card-title">Oracle VirtualBox</span>
-                  <span class="tool-card-sub">Virtualisation</span>
+                  <span class="tool-card-sub" data-i18n="comp.sub.virtualisation">Virtualisation</span>
                 </div>
                 <span class="tool-card-chevron">&#9660;</span>
               </div>
-              <div class="tool-card-body">
-                <p>La virtualisation est le centre de tout développement de réseaux et postes numériques. Elle permet de simuler ces derniers depuis un unique appareil physique.</p>
-              </div>
+              <div class="tool-card-body"><p data-i18n="comp.desc.virtualisation">La virtualisation est le centre de tout développement de réseaux et postes numériques. Elle permet de simuler ces derniers depuis un unique appareil physique.</p></div>
             </div>
 
             <div class="tool-card" id="card-pingcastle">
@@ -417,13 +386,11 @@
                 <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/Pingcastle.png?raw=true" alt="PingCastle logo"/>
                 <div class="tool-card-title-block">
                   <span class="tool-card-title">PingCastle</span>
-                  <span class="tool-card-sub">Audit de sécurité</span>
+                  <span class="tool-card-sub" data-i18n="comp.sub.audit">Audit de sécurité</span>
                 </div>
                 <span class="tool-card-chevron">&#9660;</span>
               </div>
-              <div class="tool-card-body">
-                <p>PingCastle est un logiciel d'analyse de données qui fournit à son utilisateur un rapport de vulnérabilité concernant le domaine dans lequel il est testé. C'est un très bon outil pour sécuriser une infrastructure informatique.</p>
-              </div>
+              <div class="tool-card-body"><p data-i18n="comp.desc.pingcastle">PingCastle est un logiciel d'analyse de données qui fournit à son utilisateur un rapport de vulnérabilité concernant le domaine dans lequel il est testé. C'est un très bon outil pour sécuriser une infrastructure informatique.</p></div>
             </div>
 
             <div class="tool-card" id="card-pf">
@@ -431,13 +398,11 @@
                 <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/pfsense.png?raw=true" alt="PfSense logo"/>
                 <div class="tool-card-title-block">
                   <span class="tool-card-title">PfSense</span>
-                  <span class="tool-card-sub">Pare-Feux</span>
+                  <span class="tool-card-sub" data-i18n="comp.sub.parefeu">Pare-Feux</span>
                 </div>
                 <span class="tool-card-chevron">&#9660;</span>
               </div>
-              <div class="tool-card-body">
-                <p>Savoir configurer un pare-feux est indispensable pour assurer la sécurité de nos appareils et réseaux.</p>
-              </div>
+              <div class="tool-card-body"><p data-i18n="comp.desc.pfsense">Savoir configurer un pare-feux est indispensable pour assurer la sécurité de nos appareils et réseaux.</p></div>
             </div>
 
             <div class="tool-card" id="card-python">
@@ -445,13 +410,11 @@
                 <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/python.png?raw=true" alt="Python logo"/>
                 <div class="tool-card-title-block">
                   <span class="tool-card-title">Python</span>
-                  <span class="tool-card-sub">Programmation</span>
+                  <span class="tool-card-sub" data-i18n="comp.sub.programmation">Programmation</span>
                 </div>
                 <span class="tool-card-chevron">&#9660;</span>
               </div>
-              <div class="tool-card-body">
-                <p>Programmation et réseau sont étroitement liés dans le domaine du numérique. Avoir des connaissances en développement me permet de mieux coordonner mes actions en fonction des besoins.</p>
-              </div>
+              <div class="tool-card-body"><p data-i18n="comp.desc.c">Programmation et réseau sont étroitement liés dans le domaine du numérique. Avoir des connaissances en développement me permet de mieux coordonner mes actions en fonction des besoins.</p></div>
             </div>
 
             <div class="tool-card" id="card-vagrant">
@@ -459,13 +422,11 @@
                 <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/vagrant.png?raw=true" alt="Vagrant logo"/>
                 <div class="tool-card-title-block">
                   <span class="tool-card-title">Vagrant</span>
-                  <span class="tool-card-sub">Automatisation</span>
+                  <span class="tool-card-sub" data-i18n="comp.sub.automatisation">Automatisation</span>
                 </div>
                 <span class="tool-card-chevron">&#9660;</span>
               </div>
-              <div class="tool-card-body">
-                <p>Automatiser une installation de poste représente à la fois un gain de temps considérable et une gestion uniforme de tout les appareils en les basant sur une configuration commune.</p>
-              </div>
+              <div class="tool-card-body"><p data-i18n="comp.desc.vagrant">Automatiser une installation de poste représente à la fois un gain de temps considérable et une gestion uniforme de tout les appareils en les basant sur une configuration commune.</p></div>
             </div>
 
             <div class="tool-card" id="card-vmware">
@@ -473,13 +434,11 @@
                 <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/vmware%20workstation.png?raw=true" alt="VMware logo"/>
                 <div class="tool-card-title-block">
                   <span class="tool-card-title">VMware Workstation</span>
-                  <span class="tool-card-sub">Virtualisation</span>
+                  <span class="tool-card-sub" data-i18n="comp.sub.virtualisation">Virtualisation</span>
                 </div>
                 <span class="tool-card-chevron">&#9660;</span>
               </div>
-              <div class="tool-card-body">
-                <p>La virtualisation est le centre de tout développement de réseaux et postes numériques. Elle permet de simuler ces derniers depuis un unique appareil physique.</p>
-              </div>
+              <div class="tool-card-body"><p data-i18n="comp.desc.virtualisation">La virtualisation est le centre de tout développement de réseaux et postes numériques. Elle permet de simuler ces derniers depuis un unique appareil physique.</p></div>
             </div>
 
             <div class="tool-card" id="card-windows">
@@ -487,13 +446,11 @@
                 <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/windows.png?raw=true" alt="Windows logo"/>
                 <div class="tool-card-title-block">
                   <span class="tool-card-title">Windows</span>
-                  <span class="tool-card-sub">Système d'exploitation</span>
+                  <span class="tool-card-sub" data-i18n="comp.sub.os">Système d'exploitation</span>
                 </div>
                 <span class="tool-card-chevron">&#9660;</span>
               </div>
-              <div class="tool-card-body">
-                <p>Que ce soit dans le cadre d'un serveur ou d'un poste client, il est crucial de connaître le système d'un appareil pour répondre aux demandes des utilisateurs.</p>
-              </div>
+              <div class="tool-card-body"><p data-i18n="comp.desc.windows">Que ce soit dans le cadre d'un serveur ou d'un poste client, il est crucial de connaître le système d'un appareil pour répondre aux demandes des utilisateurs.</p></div>
             </div>
 
             <div class="tool-card" id="card-zabbix">
@@ -501,13 +458,11 @@
                 <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/zabbix.png?raw=true" alt="Zabbix logo"/>
                 <div class="tool-card-title-block">
                   <span class="tool-card-title">Zabbix</span>
-                  <span class="tool-card-sub">Supervision</span>
+                  <span class="tool-card-sub" data-i18n="comp.sub.supervision">Supervision</span>
                 </div>
                 <span class="tool-card-chevron">&#9660;</span>
               </div>
-              <div class="tool-card-body">
-                <p>Superviser un appareil permet de repérer en continu diverses failles et erreurs dans son système avant que ces dernières ne deviennent de réels obstacles dans son fonctionnement.</p>
-              </div>
+              <div class="tool-card-body"><p data-i18n="comp.desc.zabbix">Superviser un appareil permet de repérer en continu diverses failles et erreurs dans son système avant que ces dernières ne deviennent de réels obstacles dans son fonctionnement.</p></div>
             </div>
 
           </div>
@@ -517,29 +472,29 @@
       <!-- CONTACT -->
       <div id="contact" class="page">
         <div class="page-content">
-          <h1 class="page-title">Contact</h1>
+          <h1 class="page-title" data-i18n="nav.contact">Contact</h1>
           <div class="contact-wrap">
 
             <div class="contact-section">
-              <h2 class="contact-label">Par Mail :</h2>
+              <h2 class="contact-label" data-i18n="contact.parMail">Par Mail :</h2>
               <form class="contact-form" id="contactForm">
                 <div class="form-group">
-                  <label for="fname">Votre nom</label>
-                  <input type="text" id="fname" name="name" placeholder="Jean Dupont" required/>
+                  <label for="fname" data-i18n="contact.nom">Votre nom</label>
+                  <input type="text" id="fname" name="name" placeholder="Jean Dupont" data-i18n-placeholder="contact.nomPlaceholder" required/>
                 </div>
                 <div class="form-group">
-                  <label for="femail">Votre adresse e-mail</label>
-                  <input type="email" id="femail" name="email" placeholder="vous@exemple.com" required/>
+                  <label for="femail" data-i18n="contact.email">Votre adresse e-mail</label>
+                  <input type="email" id="femail" name="email" placeholder="vous@exemple.com" data-i18n-placeholder="contact.emailPlaceholder" required/>
                 </div>
                 <div class="form-group">
-                  <label for="fsubject">Objet</label>
-                  <input type="text" id="fsubject" name="subject" placeholder="Objet du message" required/>
+                  <label for="fsubject" data-i18n="contact.objet">Objet</label>
+                  <input type="text" id="fsubject" name="subject" placeholder="Objet du message" data-i18n-placeholder="contact.objetPlaceholder" required/>
                 </div>
                 <div class="form-group">
-                  <label for="fmessage">Message</label>
-                  <textarea id="fmessage" name="message" rows="10" placeholder="Votre message…" required></textarea>
+                  <label for="fmessage" data-i18n="contact.message">Message</label>
+                  <textarea id="fmessage" name="message" rows="10" placeholder="Votre message…" data-i18n-placeholder="contact.messagePlaceholder" required></textarea>
                 </div>
-                <button type="submit" class="send-btn">Envoyer</button>
+                <button type="submit" class="send-btn" data-i18n="contact.envoyer">Envoyer</button>
               </form>
               <p class="contact-email">quentinraizonville14@gmail.com</p>
             </div>
@@ -555,7 +510,7 @@
             </div>
 
             <div class="contact-section">
-              <h2 class="contact-label">Par téléphone :</h2>
+              <h2 class="contact-label" data-i18n="contact.parTel">Par téléphone :</h2>
               <p class="contact-phone">06 23 86 20 36</p>
             </div>
 
@@ -566,6 +521,7 @@
     </main>
 
     <!-- ==================== SCRIPTS ==================== -->
+    <script src="i18n.js"></script>
     <script src="main.js"></script>
     <script src="animations.js"></script>
 

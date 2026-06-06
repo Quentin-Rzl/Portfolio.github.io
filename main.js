@@ -32,6 +32,9 @@ function goTo(targetId) {
   const targetPage = document.getElementById(targetId);
   targetPage.classList.add('active');
 
+  // Remonter en haut de page
+  window.scrollTo(0, 0);
+
   // Double rAF pour déclencher l'animation d'entrée
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
@@ -45,8 +48,9 @@ document.querySelectorAll('.nav-btn').forEach(btn => {
   btn.addEventListener('click', () => goTo(btn.dataset.page));
 });
 
-/* Liens de la barre de navigation et du menu mobile */
+/* Liens de la barre de navigation et du menu mobile (exclut les .nav-btn de l'accueil) */
 navLinks.forEach(link => {
+  if (link.tagName === 'BUTTON') return;
   link.addEventListener('click', e => {
     e.preventDefault();
     goTo(link.dataset.page);
@@ -64,8 +68,13 @@ burger.addEventListener('click', () => {
 /* ---- Toggle thème clair / sombre ---- */
 themeToggle.addEventListener('click', () => {
   const isLight = document.body.classList.toggle('light-mode');
-  switchIcon.textContent  = isLight ? '☀️' : '🌙';
-  themeLabel.textContent  = isLight ? 'Mode clair' : 'Mode sombre';
+  switchIcon.textContent = isLight ? '☀️' : '🌙';
+  // Label traduit selon la langue active
+  const lang = window.i18n ? window.i18n.getCurrentLang() : 'fr';
+  const dict = window.i18n ? window.i18n.TRANSLATIONS[lang] : {};
+  themeLabel.textContent = isLight
+    ? (dict['accueil.modeClair']  || 'Mode clair')
+    : (dict['accueil.modeSombre'] || 'Mode sombre');
 });
 
 /* ---- Auto-resize des textareas ---- */

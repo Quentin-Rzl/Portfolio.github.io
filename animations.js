@@ -44,37 +44,6 @@
     };
   }
 
-  /* ---- Hélice ADN (Profil) ---- */
-  function makeDNA(rgb) {
-    return function (ctx, w, h, t) {
-      const [r, g, b] = getRGB(rgb);
-      ctx.clearRect(0, 0, w, h);
-      const speed = t * .0004;
-      const cols  = Math.ceil(w / 70) + 1;
-      for (let c = 0; c < cols; c++) {
-        const cx  = c * 70 + 35;
-        const pts = 32;
-        for (let i = 0; i < pts; i++) {
-          const y   = (i / pts) * h;
-          const ph  = speed + (c * .9) + (i / pts) * Math.PI * 4;
-          const amp = 22;
-          const x1  = cx + Math.sin(ph) * amp;
-          const x2  = cx + Math.sin(ph + Math.PI) * amp;
-          const a   = .18 + Math.abs(Math.sin(ph)) * .28;
-          ctx.beginPath(); ctx.arc(x1, y, 3, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${r},${g},${b},${a})`; ctx.fill();
-          ctx.beginPath(); ctx.arc(x2, y, 3, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(${r},${g},${b},${a * .7})`; ctx.fill();
-          if (i % 5 === 0) {
-            ctx.beginPath(); ctx.moveTo(x1, y); ctx.lineTo(x2, y);
-            ctx.strokeStyle = `rgba(${r},${g},${b},${a * .6})`;
-            ctx.lineWidth   = 1.5; ctx.stroke();
-          }
-        }
-      }
-    };
-  }
-
   /* ---- Pluie matricielle (Projets) ---- */
   function makeMatrix(rgb) {
     const chars = '01アイウエカキクコサシスセタチ'.split('');
@@ -149,15 +118,16 @@
         });
       }
 
-      pings.forEach((p, i) => {
+      pings.forEach((p) => {
         p.rr += .8; p.a -= .01;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.rr, 0, Math.PI * 2);
         ctx.strokeStyle = `rgba(${r},${g},${b},${Math.max(0, p.a)})`;
         ctx.lineWidth   = 1.5;
         ctx.stroke();
-        if (p.a <= 0) pings.splice(i, 1);
       });
+      // Nettoyage hors boucle pour éviter le décalage d'index
+      pings.splice(0, pings.length, ...pings.filter(p => p.a > 0));
     };
   }
 
@@ -233,7 +203,7 @@
         lastTime = t;
       }
 
-      rings.forEach((ring, i) => {
+      rings.forEach((ring) => {
         ring.rr += ring.spd * .016;
         ring.a  -= .003;
         ctx.beginPath();
@@ -241,8 +211,8 @@
         ctx.strokeStyle = `rgba(${r},${g},${b},${Math.max(0, ring.a)})`;
         ctx.lineWidth   = 2;
         ctx.stroke();
-        if (ring.a <= 0) rings.splice(i, 1);
       });
+      rings.splice(0, rings.length, ...rings.filter(ring => ring.a > 0));
     };
   }
 
@@ -331,7 +301,7 @@
         }
       }
 
-      pulses.forEach((p, i) => {
+      pulses.forEach((p) => {
         ctx.beginPath();
         if (p.vx) { ctx.moveTo(p.x, p.y); ctx.lineTo(p.x - p.len, p.y); }
         else       { ctx.moveTo(p.x, p.y); ctx.lineTo(p.x, p.y - p.len); }
@@ -344,8 +314,8 @@
         ctx.fill();
 
         p.x += p.vx; p.y += p.vy; p.a -= .004;
-        if (p.a <= 0 || p.x > w + p.len || p.y > h + p.len) pulses.splice(i, 1);
       });
+      pulses.splice(0, pulses.length, ...pulses.filter(p => p.a > 0 && p.x <= w + p.len && p.y <= h + p.len));
     };
   }
 
