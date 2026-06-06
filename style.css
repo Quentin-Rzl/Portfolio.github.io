@@ -695,6 +695,11 @@ main {
   animation: pulse-glow 3s ease-in-out infinite, slide-up 1s cubic-bezier(.22,.61,.36,1) forwards;
 }
 
+.page-enter .projet-card {
+  opacity: 0;
+  animation: pulse-glow 3s ease-in-out infinite, slide-up 1s cubic-bezier(.22,.61,.36,1) forwards;
+}
+
 /* -------------------------------------------------------
    Délais : titre à 0s, contenu = titre + 1s
    ------------------------------------------------------- */
@@ -745,6 +750,10 @@ main {
 .page-enter .contact-section:nth-child(1) { animation-delay: 0s, 1.0s; }
 .page-enter .contact-section:nth-child(2) { animation-delay: 0s, 1.1s; }
 .page-enter .contact-section:nth-child(3) { animation-delay: 0s, 1.2s; }
+
+.page-enter .projet-card:nth-child(1) { animation-delay: 0s, 1.0s; }
+.page-enter .projet-card:nth-child(2) { animation-delay: 0s, 1.2s; }
+.page-enter .projet-card:nth-child(3) { animation-delay: 0s, 1.4s; }
 
 
 
@@ -799,6 +808,7 @@ main {
 .page.active:not(.page-enter) .e5-tableau,
 .page.active:not(.page-enter) .tool-card,
 .page.active:not(.page-enter) .contact-section,
+.page.active:not(.page-enter) .projet-card,
 #accueil.active:not(.page-enter) .accueil-line1,
 #accueil.active:not(.page-enter) .accueil-line2,
 #accueil.active:not(.page-enter) .accueil-sub,
