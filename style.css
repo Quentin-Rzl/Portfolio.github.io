@@ -737,6 +737,9 @@ main {
 .page-enter .tool-card:nth-child(12) { animation-delay: 0s, 2.10s; }
 .page-enter .tool-card:nth-child(13) { animation-delay: 0s, 2.20s; }
 .page-enter .tool-card:nth-child(14) { animation-delay: 0s, 2.30s; }
+.page-enter .tool-card:nth-child(15) { animation-delay: 0s, 2.40s; }
+.page-enter .tool-card:nth-child(16) { animation-delay: 0s, 2.50s; }
+.page-enter .tool-card:nth-child(17) { animation-delay: 0s, 2.60s; }
 
 /* Contact : titre à 0s, sections à 1s en cascade */
 .page-enter .contact-section:nth-child(1) { animation-delay: 0s, 1.0s; }

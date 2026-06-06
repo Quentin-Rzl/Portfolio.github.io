@@ -297,6 +297,18 @@
           <h1 class="page-title" data-i18n="nav.competences">Compétences</h1>
           <div class="comp-grid">
 
+            <div class="tool-card" id="card-ad">
+              <div class="tool-card-header" onclick="document.getElementById('card-ad').classList.toggle('open')">
+                <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/active-directory-logo-png-transparent.png?raw=true" alt="Active Directory logo"/>
+                <div class="tool-card-title-block">
+                  <span class="tool-card-title">Active Directory</span>
+                  <span class="tool-card-sub" data-i18n="comp.sub.domaine">Contrôleur de domaine</span>
+                </div>
+                <span class="tool-card-chevron">&#9660;</span>
+              </div>
+              <div class="tool-card-body"><p data-i18n="comp.desc.ad">L'Active Directory sous Windows est un service qui va permettre de gérer les ressources d'un serveur en attribuant aux utilisateurs une hiérarchie et des conditions d'accès dans un domaine.</p></div>
+            </div>
+
             <div class="tool-card" id="card-c">
               <div class="tool-card-header" onclick="document.getElementById('card-c').classList.toggle('open')">
                 <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/C.png?raw=true" alt="C logo"/>
@@ -417,6 +429,18 @@
               <div class="tool-card-body"><p data-i18n="comp.desc.c">Programmation et réseau sont étroitement liés dans le domaine du numérique. Avoir des connaissances en développement me permet de mieux coordonner mes actions en fonction des besoins.</p></div>
             </div>
 
+            <div class="tool-card" id="card-vscode">
+              <div class="tool-card-header" onclick="document.getElementById('card-vscode').classList.toggle('open')">
+                <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/Visual_Studio_Code_1.35_icon.svg.png?raw=true" alt="Visual Studio Code logo"/>
+                <div class="tool-card-title-block">
+                  <span class="tool-card-title">Visual Studio Code</span>
+                  <span class="tool-card-sub" data-i18n="comp.sub.editeurCode">Éditeur de code</span>
+                </div>
+                <span class="tool-card-chevron">&#9660;</span>
+              </div>
+              <div class="tool-card-body"><p data-i18n="comp.desc.vscode">Visual Studio Code est un excellent support pour rédiger des fichiers HTML, CSS ou encore pour des langages de programmation comme Python ou C.</p></div>
+            </div>
+
             <div class="tool-card" id="card-vagrant">
               <div class="tool-card-header" onclick="document.getElementById('card-vagrant').classList.toggle('open')">
                 <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/vagrant.png?raw=true" alt="Vagrant logo"/>
@@ -451,6 +475,18 @@
                 <span class="tool-card-chevron">&#9660;</span>
               </div>
               <div class="tool-card-body"><p data-i18n="comp.desc.windows">Que ce soit dans le cadre d'un serveur ou d'un poste client, il est crucial de connaître le système d'un appareil pour répondre aux demandes des utilisateurs.</p></div>
+            </div>
+
+            <div class="tool-card" id="card-wireshark">
+              <div class="tool-card-header" onclick="document.getElementById('card-wireshark').classList.toggle('open')">
+                <img src="https://github.com/Quentin-Rzl/Portfolio.github.io/blob/main/assets/images/Comp%C3%A9tences/Wireshark_icon_new.png?raw=true" alt="Wireshark logo"/>
+                <div class="tool-card-title-block">
+                  <span class="tool-card-title">Wireshark</span>
+                  <span class="tool-card-sub" data-i18n="comp.sub.analyse">Analyse de données</span>
+                </div>
+                <span class="tool-card-chevron">&#9660;</span>
+              </div>
+              <div class="tool-card-body"><p data-i18n="comp.desc.wireshark">L'analyse de flux de données est très utile pour comprendre quels éléments sont visibles dans un réseau et pour des simulations d'attaque et défense.</p></div>
             </div>
 
             <div class="tool-card" id="card-zabbix">
@@ -521,7 +557,7 @@
     </main>
 
     <!-- ==================== SCRIPTS ==================== -->
-    <script src="i18n.js"></script>
+    <script src="langages.js"></script>
     <script src="main.js"></script>
     <script src="animations.js"></script>
 
