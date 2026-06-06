@@ -928,6 +928,15 @@ body.light-mode .accueil-line2 {
   text-shadow: none;
 }
 
+/* Titres de section en mode clair — ombre directionnelle légère */
+body.light-mode .page-title {
+  text-shadow: 2px 2px 0 rgba(0,0,0,.12);
+}
+
+body.light-mode .profil-section-title {
+  text-shadow: 2px 2px 0 rgba(0,0,0,.12);
+}
+
 
 
 /* Profil : section A propos fond gris clair + texte noir */
@@ -944,7 +953,7 @@ body.light-mode .interest-card-body p {
 /* Veille : titres et texte en noir */
 body.light-mode .veille-card-title {
   color: #000;
-  text-shadow: none;
+  text-shadow: 2px 2px 0 rgba(0,0,0,.12);
 }
 
 body.light-mode .veille-card,
@@ -1309,14 +1318,14 @@ body.light-mode .contact-email {
 .lang-btn {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.55rem;
   background: rgba(255,255,255,.08);
   border: 1.5px solid rgba(255,255,255,.25);
   border-radius: 6px;
-  padding: 0.35rem 0.75rem;
+  padding: 0.5rem 1rem;
   cursor: pointer;
   font-family: var(--f);
-  font-size: 0.82rem;
+  font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: .06em;
   text-transform: uppercase;
@@ -1331,7 +1340,7 @@ body.light-mode .contact-email {
 }
 
 .lang-flag {
-  font-size: 1rem;
+  font-size: 1.25rem;
   line-height: 1;
 }
 
