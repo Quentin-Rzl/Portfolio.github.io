@@ -48,8 +48,10 @@ const TRANSLATIONS = {
 
     /* Veille */
     'veille.lire':    'Lire l\'article ↗',
-    'veille.v1.titre': "L'état français banni Microsoft et choisit Libre",
-    'veille.v1.desc':  "Afin de ne plus dépendre des règles imposées par les États-Unis, l'État français décide, pour sécuriser l'impôt français, de se séparer du système Microsoft et le remplace par un autre logiciel\u00a0: Libre.",
+    'veille.discord.label': 'Pour plus d\'actualités :',
+    'veille.discord.lien':  'Rejoignez mon Serveur Discord !',
+    'veille.v1.titre': "L'état français banni Microsoft et choisit d'être libre",
+    'veille.v1.desc':  "Afin de ne plus dépendre des règles imposées par les États-Unis, l'État français décide, pour sécuriser l'impôt français, de se séparer du système Microsoft et le remplace par d'autres solutions tel que Nubo ou LlaMandement.",
     'veille.v2.titre': 'La France, championne de la fuite de données en 2026',
     'veille.v2.desc':  "Depuis janvier 2026, la France subit une vague de piratages qui met en péril plus de 200 millions de données personnelles des citoyens. Les secteurs de la médecine et de la finance sont les plus exposés.",
     'veille.v3.titre': "Le manque de réactivité de l'ANSSI",
@@ -143,8 +145,10 @@ const TRANSLATIONS = {
 
     /* Tech watch */
     'veille.lire':    'Read article ↗',
-    'veille.v1.titre': 'The French state bans Microsoft and chooses open source',
-    'veille.v1.desc':  'In order to no longer depend on US-imposed rules, the French government decides to secure French tax data by dropping the Microsoft ecosystem and replacing it with an open-source alternative: Libre.',
+    'veille.discord.label': 'For more news:',
+    'veille.discord.lien':  'Join my Discord Server!',
+    'veille.v1.titre': 'The French state bans Microsoft and chooses to be free',
+    'veille.v1.desc':  'In order to no longer depend on US-imposed rules, the French government decides to secure French tax data by dropping the Microsoft ecosystem and replacing it with other solutions such as Nubo or LlaMandement.',
     'veille.v2.titre': 'France, Europe\'s data breach champion in 2026',
     'veille.v2.desc':  'Since January 2026, France has faced a wave of cyberattacks putting over 200 million citizens\' personal records at risk. The healthcare and finance sectors are the most exposed.',
     'veille.v3.titre': 'ANSSI\'s lack of responsiveness',
