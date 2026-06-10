@@ -192,24 +192,25 @@
       const [r, g, b] = getRGB(rgb);
       ctx.clearRect(0, 0, w, h);
 
-      if (t - lastTime > 1200) {
+      // Nouvelle ondulation toutes les 600ms (au lieu de 1200ms)
+      if (t - lastTime > 600) {
         rings.push({
           x:   Math.random() * w,
           y:   Math.random() * h,
           rr:  0,
-          a:   .55,
-          spd: Math.random() * 35 + 20,
+          a:   .75,                        // opacité initiale plus haute
+          spd: Math.random() * 60 + 40,    // expansion plus rapide
         });
         lastTime = t;
       }
 
       rings.forEach((ring) => {
         ring.rr += ring.spd * .016;
-        ring.a  -= .003;
+        ring.a  -= .0025;                  // fondu plus lent = durée de vie plus longue
         ctx.beginPath();
         ctx.arc(ring.x, ring.y, ring.rr, 0, Math.PI * 2);
         ctx.strokeStyle = `rgba(${r},${g},${b},${Math.max(0, ring.a)})`;
-        ctx.lineWidth   = 2;
+        ctx.lineWidth   = 3;               // trait plus épais
         ctx.stroke();
       });
       rings.splice(0, rings.length, ...rings.filter(ring => ring.a > 0));
