@@ -842,7 +842,7 @@ main {
 
 /* === Onglet Veille Technologique === */
 .veille-grid {
-  padding: 2.5rem clamp(1rem, 5vw, 6rem) 1rem;
+  padding: 2.5rem clamp(1rem, 5vw, 6rem) 2.5rem;
   display: flex;
   flex-wrap: wrap;
   gap: clamp(1rem, 2vw, 1.8rem);
